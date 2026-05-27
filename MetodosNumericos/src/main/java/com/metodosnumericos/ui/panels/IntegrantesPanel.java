@@ -7,20 +7,27 @@ import javax.swing.border.*;
 import java.awt.*;
 
 /**
- * Panel de integrantes del proyecto.
- * Editar los datos de cada integrante aquí.
+ * Panel de integrantes del proyecto. Editar los datos de cada integrante aquí.
  */
 public class IntegrantesPanel extends JPanel {
 
     // ── EDITAR AQUÍ LOS DATOS DEL GRUPO ──────────────────────────────────────
     private static final String[][] INTEGRANTES = {
-        {"Integrante 1", "COD-001", "correo1@comfenalco.edu.co", "Desarrollador Principal"},
-        {"Integrante 2", "COD-002", "correo2@comfenalco.edu.co", "Diseño UI/UX"},
-        {"Integrante 3", "COD-003", "correo3@comfenalco.edu.co", "Lógica Matemática"},
-        {"Integrante 4", "COD-004", "correo4@comfenalco.edu.co", "Testing y Validación"},
-        {"Integrante 5", "COD-005", "correo5@comfenalco.edu.co", "Documentación"},
-        {"Integrante 6", "COD-006", "correo6@comfenalco.edu.co", "Gráficas y Visualización"},
-    };
+        {
+            "Víctor José Castillo Castro",
+            "COD-0000058034",
+            "vcastilloc@tecnocomfenalco.edu.co",
+            "Desarrollador",
+            "Diseño UI/UX",
+            "Lógica Matemática",
+            "Testing y Validación",
+            "Gráficas y Visualización"
+        },
+        {"Manuel Enrique Calderón Valdelamar", "COD-001", "manuelcalderonv@tecnocomfenalco.edu.co", "Diseño UI/UX"},
+        {"Juan David Trespalacios", "COD-002", "juantrespalaciosm@tecnocomfenalco.edu.co", "Lógica Matemática"},
+        {"Jesús David Cardoza Cabrera", "COD-003", "jesuscardozac@tecnocomfenalco.edu.co", "Testing y Validación"},
+        {"Esteban Romero Carrillo", "COD-004", "estebanromeroc@tecnocomfenalco.edu.co", "Documentación"},
+        {"Santiago Almeida Castro", "COD-005", "santiagoalmeidac@tecnocomfenalco.edu.co", "Gráficas y Visualización"},};
     // ─────────────────────────────────────────────────────────────────────────
 
     private static final Color[] AVATAR_COLORS = {
@@ -29,8 +36,7 @@ public class IntegrantesPanel extends JPanel {
         new Color(120, 0, 150),
         new Color(160, 60, 0),
         new Color(0, 100, 160),
-        new Color(180, 0, 50),
-    };
+        new Color(180, 0, 50),};
 
     public IntegrantesPanel() {
         setLayout(new BorderLayout());
@@ -78,13 +84,14 @@ public class IntegrantesPanel extends JPanel {
         JPanel card = new JPanel(new BorderLayout(0, 12));
         card.setBackground(Constantes.COLOR_TARJETA);
         card.setBorder(BorderFactory.createCompoundBorder(
-            new LineBorder(Constantes.COLOR_BORDE, 1, true),
-            new EmptyBorder(20, 20, 20, 20)
+                new LineBorder(Constantes.COLOR_BORDE, 1, true),
+                new EmptyBorder(20, 20, 20, 20)
         ));
 
         // Avatar
         JPanel avatar = new JPanel() {
-            @Override protected void paintComponent(Graphics g) {
+            @Override
+            protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 Graphics2D g2 = (Graphics2D) g;
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -116,12 +123,37 @@ public class IntegrantesPanel extends JPanel {
         lblNombre.setForeground(Constantes.COLOR_TEXTO);
         lblNombre.setAlignmentX(CENTER_ALIGNMENT);
 
+        // ── ROL PRINCIPAL ──
         JLabel lblRol = new JLabel(datos[3]);
-        lblRol.setFont(new Font("SansSerif", Font.ITALIC, 12));
+        lblRol.setFont(new Font("SansSerif", Font.BOLD, 12));
         lblRol.setForeground(colorAvatar);
         lblRol.setAlignmentX(CENTER_ALIGNMENT);
+        info.add(lblRol);
+        info.add(Box.createVerticalStrut(6));
 
-        JPanel badgeCod = crearBadge("Cód: " + datos[1], new Color(230, 240, 255));
+        // ── ROLES EXTRA (índices 4 en adelante, solo si existen) ──
+        if (datos.length > 4) {
+            JPanel wrapRoles = new JPanel(new FlowLayout(FlowLayout.CENTER, 4, 2));
+            wrapRoles.setOpaque(false);
+            wrapRoles.setMaximumSize(new Dimension(Short.MAX_VALUE, Short.MAX_VALUE));
+            for (int i = 4; i < datos.length; i++) {
+                JPanel mini = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0));
+                mini.setOpaque(false);
+                mini.setBorder(BorderFactory.createCompoundBorder(
+                        new LineBorder(colorAvatar, 1, true),
+                        new EmptyBorder(2, 7, 2, 7)
+                ));
+                JLabel lMini = new JLabel(datos[i]);
+                lMini.setFont(new Font("SansSerif", Font.PLAIN, 10));
+                lMini.setForeground(colorAvatar);
+                mini.add(lMini);
+                wrapRoles.add(mini);
+            }
+            info.add(wrapRoles);
+            info.add(Box.createVerticalStrut(4));
+        }
+
+        JPanel badgeCod = crearBadge("Código: " + datos[1], new Color(230, 240, 255));
         badgeCod.setAlignmentX(CENTER_ALIGNMENT);
 
         JLabel lblEmail = new JLabel("✉ " + datos[2]);
@@ -152,7 +184,8 @@ public class IntegrantesPanel extends JPanel {
 
     private JPanel crearBadge(String texto, Color fondo) {
         JPanel badge = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 0)) {
-            @Override protected void paintComponent(Graphics g) {
+            @Override
+            protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 Graphics2D g2 = (Graphics2D) g;
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);

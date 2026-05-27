@@ -37,6 +37,7 @@ public class EvaluadorMatematico {
     /**
      * Valida que la expresión sea evaluable en el punto x=1.
      * @param funcion expresión a validar
+     * @param puntoTest
      * @return true si es válida
      */
     public static boolean esValida(String funcion, double puntoTest) {
@@ -71,6 +72,8 @@ public class EvaluadorMatematico {
 
     /**
      * Devuelve un mensaje de error amigable para el usuario.
+     * @param e
+     * @return 
      */
     public static String mensajeError(Exception e) {
         String msg = e.getMessage();

@@ -11,6 +11,7 @@ import javax.swing.border.*;
 import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Panel reutilizable para todos los métodos de integración numérica.
@@ -170,9 +171,10 @@ public class MetodoPanel extends JPanel {
         p.setMaximumSize(new Dimension(Short.MAX_VALUE, 32));
 
         String[][] btns = {
-            {"x²","x^2"}, {"x³","x^3"}, {"√","sqrt("}, {"sin","sin("},
-            {"cos","cos("}, {"tan","tan("}, {"log","log("}, {"ln","ln("},
-            {"π","pi"}, {"e","e"}, {"exp","exp("}
+            {"x²","x^2"}, {"x³","x^3"}, {"√","sqrt()"}, 
+            {"sin","sin()"}, {"cos","cos()"}, {"tan","tan()"}, 
+            {"log","log()"}, {"ln","ln()"}, {"π","pi"}, 
+            {"e","e"}, {"exp","exp()"}
         };
 
         for (String[] b : btns) {
@@ -368,7 +370,7 @@ public class MetodoPanel extends JPanel {
                 try {
                     ResultadoIntegracion res = get();
                     mostrarResultado(res);
-                } catch (Exception ex) {
+                } catch (InterruptedException | ExecutionException ex) {
                     mostrarError("Error inesperado: " + ex.getMessage());
                 }
             }

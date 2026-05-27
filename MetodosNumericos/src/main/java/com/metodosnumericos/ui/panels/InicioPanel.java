@@ -138,9 +138,9 @@ public class InicioPanel extends JPanel {
         ));
 
         agregarInfoItem(card, "📚 Materia",    "Métodos Numéricos");
-        agregarInfoItem(card, "👨‍🏫 Profesor",   "Por definir");
-        agregarInfoItem(card, "🏛 Universidad", "Tecnológico Comfenalco");
-        agregarInfoItem(card, "📅 Año",        "2025");
+        agregarInfoItem(card, "👨‍🏫 Profesor",   "Javier Mendoza Beltran");
+        agregarInfoItem(card, "🏛 Universidad", "Fundación Universitaria Tecnológico De Comfenalco");
+        agregarInfoItem(card, "📅 Año",        "2026");
         agregarInfoItem(card, "💻 Lenguaje",   "Java 17 + Swing");
         agregarInfoItem(card, "🔢 Métodos",    "5 métodos de integración");
 
