@@ -138,8 +138,8 @@ public class GraficaIntegracion {
         XYSeriesCollection datasetXi    = new XYSeriesCollection(serieXi);
 
         // ── Plot ─────────────────────────────────────────────────────────────
-        NumberAxis ejeX = new NumberAxis("x");
-        NumberAxis ejeY = new NumberAxis("f(x)");
+        NumberAxis ejeX = new NumberAxis("X");
+        NumberAxis ejeY = new NumberAxis("F(x) = Y");
         ejeX.setAutoRangeIncludesZero(false);
         ejeY.setAutoRangeIncludesZero(true);
 
